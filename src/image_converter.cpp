@@ -24,6 +24,7 @@ void ImageConverter::image_callback(const sensor_msgs::ImageConstPtr& received_i
     ROS_INFO("fisheye image to equirectangular image");
     ThetaConversion(cv_image.cols, cv_image.rows).doConversion(cv_image);
 
+    ROS_INFO("cv image to output ros image");
     sensor_msgs::ImagePtr output_image = cv_bridge::CvImage(std_msgs::Header(), "bgr8", cv_image).toImageMsg();
     output_image->header = received_image->header;
     image_pub.publish(output_image);
