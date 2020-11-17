@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<launch>
+  <arg name="bagfile" default="/home/amsl/bagfiles/roomba_test_2020-11-16-18-55-47.bag"/>
+  <node name="rosbag_play" pkg="rosbag" type="play" args="$(arg bagfile) --clock -l"/>
+  <include file="$(find theta_s_ros)/launch/republish.launch" />
+  <node pkg="theta_s_ros" type="image_converter" name="converter" output="screen">
+    <remap from="/camera/image_raw" to="/republished/image_raw" />
+  </node>
+</launch>

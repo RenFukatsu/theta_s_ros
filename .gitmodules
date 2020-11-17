@@ -1,0 +1,3 @@
+[submodule "include/opencv_theta_s"]
+	path = include/opencv_theta_s
+	url = git@github.com:RenFukatsu/opencv_theta_s.git
