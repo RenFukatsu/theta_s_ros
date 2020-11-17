@@ -2,6 +2,6 @@
 <launch>
     <node name="image_republish" pkg="image_transport" type="republish" args="compressed raw">
         <remap from="in" to="/camera/image_raw" />
-        <remap from="out" to="/republished/image_raw" />
+        <remap from="out" to="/theta_s/image_raw" />
     </node>
 </launch>
