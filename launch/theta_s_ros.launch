@@ -1,6 +1,7 @@
 <?xml version="1.0"?>
 <launch>
   <include file="$(find theta_s_ros)/launch/run_theta_s.launch" />
+  <arg name="image_raw_topic" default="/theta_s/image_raw" />
 
   <group ns="theta_s">
     <node pkg="theta_s_ros" type="image_converter" name="converter" >
