@@ -3,8 +3,6 @@
   <arg name="use_bag" default="true"/>
   <arg name="bagfile" default="/home/amsl/bagfiles/roomba_test_2020-11-16-18-55-47.bag"/>
   <arg name="image_raw_topic" default="/theta_s/image_raw" />
-  <arg name="image_width" default="640" />
-  <arg name="image_height" default="480" />
 
   <group if="$(arg use_bag)">
     <node name="rosbag_play" pkg="rosbag" type="play" args="$(arg bagfile) --clock -l"/>

@@ -1,1 +1,3 @@
 .vscode/
+launch/image_converter.launch
+launch/republish.launch
