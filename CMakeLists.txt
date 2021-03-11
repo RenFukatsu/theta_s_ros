@@ -6,6 +6,8 @@ find_package(catkin REQUIRED COMPONENTS
   std_msgs
   sensor_msgs
   cv_bridge
+  pluginlib
+  nodelet
 )
 
 find_package(OpenCV REQUIRED)
@@ -22,14 +24,21 @@ include_directories(
   ${catkin_INCLUDE_DIRS}
 )
 
+add_library(${PROJECT_NAME}
+  src/image_converter_nodelet.cpp include/opencv_theta_s/EquirectangularConversion/ThetaConversion.cpp
+)
+target_link_libraries(${PROJECT_NAME}
+  ${catkin_LIBRARIES}
+)
+
 add_executable(
-    image_converter src/image_converter.cpp include/opencv_theta_s/EquirectangularConversion/ThetaConversion.cpp
+  image_converter src/image_converter.cpp include/opencv_theta_s/EquirectangularConversion/ThetaConversion.cpp
 )
 
 add_dependencies(
-    image_converter ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS}
+  image_converter ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS}
 )
 
 target_link_libraries(image_converter
-    ${catkin_LIBRARIES}
+  ${catkin_LIBRARIES}
 )

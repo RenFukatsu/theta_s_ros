@@ -1,0 +1,9 @@
+<library path="lib/libtheta_s_ros">
+    <class name="theta_s_ros/image_converter_nodelet"
+           type="theta_s_ros::ImageConverterNodelet"
+           base_class_type="nodelet::Nodelet">
+        <description>
+            Theta S camera nodelet
+        </description>
+    </class>
+</library>
