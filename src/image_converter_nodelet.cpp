@@ -6,8 +6,8 @@ void ImageConverterNodelet::onInit() {
     nh = getNodeHandle();
     private_nh = getPrivateNodeHandle();
 
-    image_sub = nh.subscribe("/camera/image_raw", 1, &ImageConverterNodelet::image_callback, this);
-    image_pub = nh.advertise<sensor_msgs::Image>("/equirectangular/image_raw", 1);
+    image_sub = nh.subscribe("camera/image_raw", 1, &ImageConverterNodelet::image_callback, this);
+    image_pub = nh.advertise<sensor_msgs::Image>("equirectangular/image_raw", 1);
 }
 
 void ImageConverterNodelet::image_callback(const sensor_msgs::ImageConstPtr& received_image) {
@@ -26,7 +26,8 @@ void ImageConverterNodelet::image_callback(const sensor_msgs::ImageConstPtr& rec
     cv_image = cv_image_ptr->image;
 
     NODELET_DEBUG("fisheye image to equirectangular image");
-    ThetaConversion(cv_image.cols, cv_image.rows).doConversion(cv_image);
+    static ThetaConversion theta_conversion(cv_image.cols, cv_image.rows);
+    theta_conversion.doConversion(cv_image);
 
     NODELET_DEBUG("cv image to output ros image");
     sensor_msgs::ImagePtr output_image = cv_bridge::CvImage(std_msgs::Header(), "bgr8", cv_image).toImageMsg();
